@@ -7,7 +7,7 @@ const { nanoid } = require('nanoid');
 const validUrl = require('valid-url');
 const Url = require('../models/Url');
 
-router.post('/api/shorten', async (req, res) => {
+router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
 
   if (!validUrl.isUri(longUrl)) {
