@@ -9,11 +9,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
 connectDB();
-
-app.use('/api/url', require('./routes/url'));
-
+const urlRoutes = require('./routes/url');
+app.use('/api/url', urlRoutes);
+app.use('/', urlRoutes);
 const __dirname1 = path.resolve();
 app.use(express.static(path.join(__dirname1, 'frontend', 'build')));
 
