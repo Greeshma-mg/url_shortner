@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "postinstall": "cd frontend && npm install && npm run build"
+    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then cd frontend && npm install && npm run build; fi"
   },
   "keywords": [],
   "author": "",
