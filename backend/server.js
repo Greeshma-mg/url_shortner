@@ -9,16 +9,12 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
 connectDB();
-
 app.use('/api/url', require('./routes/url'));
-
-const dirname1 = path.resolve();
-app.use(express.static(path.join(dirname1, 'frontend', 'build')));
-
+const __dirnamePath = path.resolve();
+app.use(express.static(path.join(__dirnamePath, 'frontend', 'build')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname1, 'frontend', 'build', 'index.html'));
+  res.sendFile(path.join(__dirnamePath, 'frontend', 'build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
