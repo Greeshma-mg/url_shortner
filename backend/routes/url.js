@@ -24,7 +24,6 @@ router.post('/shorten', async (req, res) => {
   console.log('Generated shortUrl:', shortUrl);
 
   try {
-    // Check if URL already exists
     let url = await Url.findOne({ longUrl });
     console.log('Existing URL check result:', url);
     
@@ -33,7 +32,6 @@ router.post('/shorten', async (req, res) => {
       return res.json({ shortUrl: `${process.env.BASE_URL}/${url.shortCode}` });
     }
 
-    // Create new URL entry
     console.log('Creating new URL entry...');
     url = new Url({ longUrl, shortCode: code });
     console.log('URL object before save:', url);
@@ -61,7 +59,6 @@ router.get('/:code', async (req, res) => {
     if (!url) {
       console.log('No URL found for code:', requestedCode);
       
-      // Let's also check what codes DO exist in the database
       const allUrls = await Url.find({}, { shortCode: 1, longUrl: 1 }).limit(5);
       console.log('Available codes in database:', allUrls);
       
